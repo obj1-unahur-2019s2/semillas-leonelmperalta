@@ -1,0 +1,26 @@
+import parcelas.*
+import plantas.*
+
+describe "test parcela"{
+	var parce = new Parcela(ancho = 20,largo = 1,horasDeSolPorDia = 8)
+	var soja = new Soja(anioObtencion = 2009, altura = 1.1)
+	var soja2 = new Soja(anioObtencion = 2009, altura = 1.1)
+	var soja3 = new Soja(anioObtencion = 2009, altura = 1.1)
+	var soja4 = new Soja(anioObtencion = 2009, altura = 1.1)
+	var soja5 = new Soja(anioObtencion = 2009, altura = 1.1)
+	fixture{
+		parce.plantar(soja)
+		parce.plantar(soja2)
+		parce.plantar(soja3)
+		parce.plantar(soja4)
+	}
+	test "superficie"{
+		assert.equals(20, parce.superficie())
+	}
+	test "cantidad plantas que tolera"{
+		assert.equals(4, parce.cantidadPlantasQueTolera())
+	}
+	test "plantar mas de la cantidad"{
+		assert.throwsException(parce.plantar(soja5))
+	}
+}
